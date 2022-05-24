@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
 import Dashboard from '../views/Dashboard.vue'
+import ViewFlashCards from '../views/ViewFlashCards'
 
 
 export default createRouter({
@@ -21,6 +22,11 @@ export default createRouter({
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard
+    },
+    {
+        path: '/viewflashcards/:set_id',
+        name: 'viewflashcards',
+        component: ViewFlashCards
     }
 ]
 }

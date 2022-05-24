@@ -37,7 +37,7 @@ export default {
                     this.$store.commit('setToken', token)
                     axios.defaults.headers.common['Autherization'] = "Token " + token
                     localStorage.setItem('token', token)
-                    this.$router.push('/log-in')
+                    this.$router.push('/dashboard')
                 })
                 .catch(error => {console.log(error)})
         }       

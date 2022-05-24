@@ -1,18 +1,14 @@
 <template>
-    <div id='nav'>
-        <router-link to='/sign-up' v-if="!this.$store.state.isAuthenticated">Sign up</router-link> |
-        <router-link to='/log-in' v-if="!this.$store.state.isAuthenticated">Log in</router-link>
-        <br>
-        <router-link to='/dashboard' v-if="this.$store.state.isAuthenticated">Dashboard</router-link>
-        <Logout></Logout>
-    </div>
+    <NavBar></NavBar>
     <router-view></router-view>
+    <router-link to='/viewflashcards/1'>Flashcard view - temporary</router-link>
 </template>
 
 
 <script>
     import axios from 'axios'
-import Logout from './views/Logout.vue'
+import Logout from './components/Logout.vue'
+import NavBar from './components/NavBar.vue'
 
     export default {
     // name: 'app',
@@ -27,13 +23,14 @@ import Logout from './views/Logout.vue'
             axios.defaults.headers.common["Authorization"] = "";
         }
     },
-    components: { Logout }
+    components: { Logout, NavBar }
 }
 </script>
 
 <style>
-    #nav {
-        padding: 30px;
-    }
+    body {
+	background: #4e699d;
+	font-family: sans-serif;
+}
 
 </style>

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
-import router from './router'
+import router from './router/BaseRouter'
 import store from './store'
 import axios from 'axios'
 
