@@ -8,6 +8,10 @@
         </div>
         <div class="tab">
             <!-- link do zestawów czy coś  -->
+            <router-link to='/sets'>Learn flashcards</router-link> 
+        </div>
+        <div class="tab">
+            <!-- link do zestawów czy coś  -->
             <router-link to='/viewflashcards'>Learn flashcards</router-link> 
         </div>
         <div class="tab" v-if="!this.$store.state.isAuthenticated">
@@ -17,8 +21,7 @@
                 <router-link to='/log-in'>Log in</router-link>
         </div>
         <div class="tab" v-else>
-            <router-link to='/dashboard' v-if="this.$store.state.isAuthenticated">Dashboard</router-link>
-            <Logout></Logout>
+            <router-link to='/dashboard' >Dashboard</router-link>
         </div>
     </div>
 </template>

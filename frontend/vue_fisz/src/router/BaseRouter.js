@@ -3,7 +3,7 @@ import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
 import Dashboard from '../views/Dashboard.vue'
 import ViewFlashCards from '../views/ViewFlashCards'
-
+import Sets from '../views/Sets'
 
 export default createRouter({
     history: createWebHistory(),
@@ -27,6 +27,11 @@ export default createRouter({
         path: '/viewflashcards/:set_id',
         name: 'viewflashcards',
         component: ViewFlashCards
+    },
+    {
+        path: '/sets',
+        name: 'Sets',
+        component: Sets
     }
 ]
 }
