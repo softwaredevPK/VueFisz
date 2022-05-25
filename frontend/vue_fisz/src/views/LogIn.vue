@@ -35,7 +35,7 @@ export default {
                 .then( response => {
                     const token = response.data.auth_token    
                     this.$store.commit('setToken', token)
-                    axios.defaults.headers.common['Autherization'] = "Token " + token
+                    axios.defaults.headers.common['Authorization'] = "Token " + token
                     localStorage.setItem('token', token)
                     this.$router.push('/dashboard')
                 })

@@ -17,6 +17,12 @@ export default {
         submitForm(e) {
             axios
                 .post('/api/v1/token/logout')
+                .then(
+                    res =>{
+                        console.log(123)
+                        console.log(res)
+                    } 
+                )
                 .then( response => {
                     console.log(response)
                     this.$store.commit('removeToken')
@@ -24,7 +30,8 @@ export default {
                     localStorage.removeItem('token')
                     this.$router.push('/log-in')
                 })
-                .catch(error => {console.log(error)})
+                .catch(error => {
+                    console.log(error)})
         }       
 
     }
