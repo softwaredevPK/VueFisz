@@ -4,7 +4,7 @@
 		<div class="flip-card">
 			<div class="front">
 				<h1>Set {{ $route.params.set_id }}</h1>
-				<img src="@/assets/logo.png">
+				<img src="@/assets/Logo.png">
 				<p>Click to flip</p>
 			</div>
 			<div class="back">
