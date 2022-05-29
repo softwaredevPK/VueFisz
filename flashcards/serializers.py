@@ -24,8 +24,14 @@ class FilteredListSerializer(ListSerializer):
 class FlashCardSerializer(ModelSerializer):
     class Meta:
         model = Flashcard
-        list_serializer_class = FilteredListSerializer
         fields = ['front', 'back', 'id']
+
+
+class FlashCardForSetSerializer(ModelSerializer):
+    class Meta:
+        model = Flashcard
+        list_serializer_class = FilteredListSerializer
+        fields = ['front', 'back', 'id', "repeat_needed", "passed"]
 
 
 class FlashCardDetailedSerializer(ModelSerializer):
@@ -34,7 +40,7 @@ class FlashCardDetailedSerializer(ModelSerializer):
 
     class Meta:
         model = Flashcard
-        fields = ['id', 'front', 'back', "set"]
+        fields = ['id', 'front', 'back', "set", "repeat_needed", "passed"]
         read_only_fields = ['id']
 
 
@@ -55,7 +61,7 @@ class SetSerializer(ModelSerializer):
 
 class SetDetailedSerializer(ModelSerializer):
 
-    flashcards = FlashCardSerializer(many=True, read_only=True)
+    flashcards = FlashCardForSetSerializer(many=True, read_only=True)
 
     class Meta:
         model = Set
