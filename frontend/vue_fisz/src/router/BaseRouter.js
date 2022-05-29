@@ -1,38 +1,45 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import {
+    createRouter,
+    createWebHistory
+} from 'vue-router'
 import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
+import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import ViewFlashCards from '../views/ViewFlashCards'
 import Sets from '../views/Sets'
 
 export default createRouter({
     history: createWebHistory(),
-    routes: [
-    {
-        path: '/sign-up',
-        name: 'SignUp',
-        component: SignUp,
-    },
+    routes: [{
+            path: '/',
+            name: 'Home',
+            component: Home,
+        },
         {
-        path: '/log-in',
-        name: 'LogIn',
-        component: LogIn,
-    },
-    {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: Dashboard
-    },
-    {
-        path: '/viewflashcards/:set_id',
-        name: 'viewflashcards',
-        component: ViewFlashCards
-    },
-    {
-        path: '/sets',
-        name: 'Sets',
-        component: Sets
-    }
-]
-}
-)
+            path: '/sign-up',
+            name: 'SignUp',
+            component: SignUp,
+        },
+        {
+            path: '/log-in',
+            name: 'LogIn',
+            component: LogIn,
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: Dashboard
+        },
+        {
+            path: '/viewflashcards/:set_id',
+            name: 'viewflashcards',
+            component: ViewFlashCards
+        },
+        {
+            path: '/sets',
+            name: 'Sets',
+            component: Sets
+        }
+    ]
+})

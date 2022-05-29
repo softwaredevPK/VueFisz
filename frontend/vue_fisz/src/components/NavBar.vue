@@ -1,50 +1,71 @@
 <template>
-    <div id='nav'>
-        <div class="tab">
-            <img src="@/assets/black_logo.svg">
-        </div>
-        <div class="tab">
-            <router-link to='/dashboard'>Dashboard</router-link>
-        </div>
-        <div class="tab">
-            <!-- link do zestawów czy coś  -->
-            <router-link to='/sets'>Learn flashcards</router-link> 
-        </div>
-        <div class="tab">
-            <!-- link do zestawów czy coś  -->
-            <router-link to='/viewflashcards'>Learn flashcards</router-link> 
-        </div>
-        <div class="tab" v-if="!this.$store.state.isAuthenticated">
-                <router-link to='/sign-up'>Sign up</router-link> 
-        </div>
-        <div class="tab" v-if="!this.$store.state.isAuthenticated">
-                <router-link to='/log-in'>Log in</router-link>
-        </div>
-        <div class="tab" v-else>
-            <router-link to='/dashboard' >Dashboard</router-link>
-        </div>
-    </div>
+
+    <nav class="app-nav">
+        <h1><img src="@/assets/Logo.png" alt="VueFisz - aplikacja"></h1>
+        <ul>
+            <li class="nav-item">
+                <router-link to="/" v-if="!this.$store.state.isAuthenticated">Strona główna</router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/dashboard" v-if="this.$store.state.isAuthenticated">Strona główna</router-link>
+            </li>
+            <li class="nav-item" v-if="this.$store.state.isAuthenticated">
+            <router-link to='/sets' >Zestawy fiszek</router-link> 
+            </li>
+            <li class="nav-item" v-if="!this.$store.state.isAuthenticated">
+                <router-link to='/sign-up'>Zarejestruj się</router-link> 
+            </li>
+            <li class="nav-item" v-if="!this.$store.state.isAuthenticated">
+                <router-link to='/log-in'>Zaloguj się</router-link> 
+            </li>
+            <li class="nav-item" v-if="this.$store.state.isAuthenticated">
+                <LogOut></LogOut>
+            </li>
+        </ul>
+    </nav>
 </template>
 
+<script>
+import LogOut from './Logout.vue'
+export default{
+    components: {LogOut}
+}
+</script>
+
+
 <style>
-    #nav {
-        height: 4rem;
+    .app-nav{
         display: flex;
-        width: 100%;
-        background-color: white;
+        flex-direction: column;
+        border-right: 1px solid #c1c1c1;
+        padding: 20px
+    }
+
+    .app-nav ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .app-nav ul a{
+        color: #000;
+        text-decoration: none;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        display: block;
+    }
+
+    .app-nav ul li a:hover{
+        background-color: #ddd;
+    }
+    .app-nav h1{
+        margin: 0;
+        padding: 0;
 
     }
 
-    #nav img {
-        width: 150px;
-    }
-
-    .tab {
-        margin-right: 20px;
-        margin-left: 20px;
-        font-size: 25px;
-        text-align: center;
-        justify-content: center;
-        position: relative;
+    .app-nav img{
+    max-width: 100%;
     }
 </style>
