@@ -18,9 +18,8 @@ class Set(TimeStamp):
 
 
 class Flashcard(TimeStamp):
-    front = models.TextField()
-    back = models.TextField()
-    set = models.ForeignKey(Set, on_delete=models.PROTECT, related_name='flashcards')
-
-
-
+    front = models.TextField(_('front'))
+    back = models.TextField(_('back'))
+    set = models.ForeignKey(Set, on_delete=models.CASCADE, related_name='flashcards')
+    repeat_needed = models.BooleanField(_("repeat_needed"), default=False)
+    passed = models.BooleanField(_('passed'), default=False)
