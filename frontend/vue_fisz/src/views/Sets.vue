@@ -15,10 +15,11 @@ import axios from 'axios'
 export default {
     name: 'Sets',
     beforeCreate() {
+            console.log( axios.defaults.headers.common);
             axios
-                .post('/api/v1/sets/', )
+                .get('/api/v1/sets/', )
                 .then( response => {
-                    console.log(response)
+                    sets = response.data
                 })
                 .catch(error => {console.log(error)})
         }       

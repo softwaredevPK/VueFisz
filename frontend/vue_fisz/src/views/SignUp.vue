@@ -3,8 +3,10 @@
         <h2>Zarejestruj się</h2>
         <!-- ten prevent sprawia ze strona sie sama nie odswieza po submit-->
         <form @submit.prevent='submitForm'>
-            <input type='email' name='email' placeholder="Podaj adres e-mail..." v-model='email'>
-            <input type='password' name='password' placeholder="Podaj haslo..." v-model='password'>
+            <small v-if="email_error">{{errors.email[0]}}</small>
+            <input type='email' name='email' placeholder="Podaj adres e-mail..." v-model='email' :class="{'is-invalid': email_error}">
+            <small v-if="password_error">{{errors.password[0]}}</small>
+            <input type='password' name='password' placeholder="Podaj haslo..." v-model='password' :class="{'is-invalid': password_error}">
             <button type='submit'>Sign up</button>
         </form>
     </div>
@@ -20,6 +22,9 @@ export default {
         return {
             email: '',
             password: '',
+            errors: [],
+            password_error: false,
+            email_error: false,
         }
     },
     methods: {
@@ -34,7 +39,22 @@ export default {
                 .then( response => {
                     this.$router.push('/log-in')
                 })
-                .catch(error => {console.log(error)})
+                .catch(error => {
+                    this.errors = error.response.data
+                    if ('password' in this.errors) {
+                        this.password_error = true;
+                    }
+                    else {
+                        this.password_error = false;
+                    }
+                    if ('email' in this.errors) {
+                        this.email_error = true;
+                    }
+                    else {
+                        this.email_error = false;
+                    }
+                    })
+                 
         }       
     }
 }

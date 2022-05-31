@@ -1,4 +1,4 @@
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg.openapi import Parameter, IN_QUERY, TYPE_BOOLEAN
 from rest_framework import mixins, viewsets
@@ -21,7 +21,7 @@ class SetViewSet(
 ):
     queryset = Set.objects.all()
     serializer_class = SetDetailedSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
 
     def get_serializer(self, *args, **kwargs):
         if self.action == 'list':
@@ -48,7 +48,7 @@ class FlashcardViewSet(
 ):
     queryset = Flashcard.objects.all()
     serializer_class = FlashCardDetailedSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
 
     def get_queryset(self):
         qs = self.queryset.filter(set__owner=self.request.user)

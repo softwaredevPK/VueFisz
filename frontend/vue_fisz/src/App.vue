@@ -58,4 +58,8 @@ body {
     font-size: 1.2em;
 }
 
+.is-invalid{
+    border-color: red;
+}
+
 </style>
