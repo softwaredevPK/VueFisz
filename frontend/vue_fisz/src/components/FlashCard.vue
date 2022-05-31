@@ -58,7 +58,7 @@ label {
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	background: #fff;
+	/* background: #fff; */
 	backface-visibility: hidden;
 	border-radius: 0 20px 0 20px;
 }
@@ -66,7 +66,7 @@ label {
 .flip-card .back {
 	transform: rotateY(180deg);
 	color: #000;
-	background: #fff;
+	/* background: #fff; */
 }
 
 label:hover .flip-card {
@@ -84,6 +84,14 @@ input {
 label:hover :checked + .flip-card {
 	transform: rotateY(175deg);
 	box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
+}
+
+.front {
+    background-color: grey;
+}
+
+.back {
+    background-color: grey;
 }
 
 .front img {
