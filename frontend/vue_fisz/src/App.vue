@@ -62,4 +62,13 @@ body {
     border-color: red;
 }
 
+.err-info{
+    border-radius: 12px;
+    padding: 3px 0px 3px 10px;
+    margin-bottom: 5px;
+    color: #F00;
+    font-size: 14px;
+}
+
+
 </style>

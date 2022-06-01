@@ -3,9 +3,9 @@
         <h2>Zarejestruj się</h2>
         <!-- ten prevent sprawia ze strona sie sama nie odswieza po submit-->
         <form @submit.prevent='submitForm'>
-            <small v-if="email_error">{{errors.email[0]}}</small>
+            <small v-if="email_error" class="err-info">{{errors.email[0]}}</small>
             <input type='email' name='email' placeholder="Podaj adres e-mail..." v-model='email' :class="{'is-invalid': email_error}">
-            <small v-if="password_error">{{errors.password[0]}}</small>
+            <small v-if="password_error" class="err-info">{{errors.password[0]}}</small>
             <input type='password' name='password' placeholder="Podaj haslo..." v-model='password' :class="{'is-invalid': password_error}">
             <button type='submit'>Sign up</button>
         </form>

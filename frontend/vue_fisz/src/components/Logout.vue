@@ -1,7 +1,7 @@
 <template>
     <div class="logout">
         <button class="btn btn-danger btn-block" v-if="this.$store.state.isAuthenticated" @click.prevent="submitForm">
-            Log Out
+            <img src="@/assets/logout.png"/><span>Log Out</span>
         </button>
 
     </div>
@@ -39,3 +39,30 @@ export default {
 
 
 </script>
+
+<style scoped>
+ button{
+     width: 100%;
+     text-align: left;
+     font-size: 16px;
+     background: transparent;
+     border: none;
+     font-weight: 400;  
+     font-family: "Signika", sans-serif;
+    color: #000;
+    text-decoration: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+ }
+ button:hover,
+ button:focus{
+     cursor: pointer;
+     background-color: #ddd;
+ }
+ button:active{
+     background-color: #ccc;
+ }
+</style>

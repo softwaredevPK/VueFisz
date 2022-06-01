@@ -4,19 +4,19 @@
         <h1><img src="@/assets/Logo.png" alt="VueFisz - aplikacja"></h1>
         <ul>
             <li class="nav-item">
-                <router-link to="/" v-if="!this.$store.state.isAuthenticated">Strona główna</router-link>
+                <router-link to="/" v-if="!this.$store.state.isAuthenticated"><img src="@/assets/home.png"/><span>Strona główna</span></router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/dashboard" v-if="this.$store.state.isAuthenticated">Strona główna</router-link>
+                <router-link to="/dashboard" v-if="this.$store.state.isAuthenticated"><img src="@/assets/home.png"/><span>Strona główna</span></router-link>
             </li>
             <li class="nav-item" v-if="this.$store.state.isAuthenticated">
-            <router-link to='/sets' >Zestawy fiszek</router-link> 
+            <router-link to='/sets' ><img src="@/assets/brain.png"/><span>Zestawy fiszek</span></router-link> 
             </li>
             <li class="nav-item" v-if="!this.$store.state.isAuthenticated">
-                <router-link to='/sign-up'>Zarejestruj się</router-link> 
+                <router-link to='/sign-up'><img src="@/assets/login.png"/><span>Zarejestruj się</span></router-link> 
             </li>
             <li class="nav-item" v-if="!this.$store.state.isAuthenticated">
-                <router-link to='/log-in'>Zaloguj się</router-link> 
+                <router-link to='/log-in'><img src="@/assets/login.png"/><span>Zaloguj się</span></router-link> 
             </li>
             <li class="nav-item" v-if="this.$store.state.isAuthenticated">
                 <LogOut></LogOut>
@@ -53,12 +53,24 @@ export default{
         padding-top: 20px;
         padding-bottom: 20px;
         padding-left: 20px;
-        display: block;
+        display: flex;
+        align-items: center;
     }
 
-    .app-nav ul li a:hover{
+    .app-nav ul li a:hover,
+    .app-nav ul li a:focus{
         background-color: #ddd;
     }
+    
+    .app-nav ul li a:active{
+        background-color: #ccc;
+    }
+
+    .app-nav ul li img{
+        margin-right: 10px;
+        max-width: 25px;
+    }
+
     .app-nav h1{
         margin: 0;
         padding: 0;

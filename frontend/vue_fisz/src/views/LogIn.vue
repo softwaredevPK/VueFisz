@@ -7,9 +7,9 @@
             </ul>
         </p>
         <form @submit.prevent='submitForm'>
-            <small v-if="email_error">{{errors.email[0]}}</small>
+            <small v-if="email_error" class="err-info">{{errors.email[0]}}</small>
             <input type='email' name='email' placeholder="Podaj adres email..." v-model='email' :class="{'is-invalid': email_error}">
-            <small v-if="password_error">{{errors.password[0]}}</small>
+            <small v-if="password_error" class="err-info">{{errors.password[0]}}</small>
             <input type='password' name='password' placeholder="Podaj hasło..." v-model='password' :class="{'is-invalid': password_error}">
             <button type='submit'>Log in</button>
         </form>
@@ -54,6 +54,7 @@ form button:focus{
     background-color: #333;
     cursor: pointer;
 }
+
 
 </style>
 <script>
