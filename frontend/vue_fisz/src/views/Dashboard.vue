@@ -1,11 +1,7 @@
 <template>
     <h2>Zestawy fiszek</h2>
     <div class="container sets">
-        <router-link to="/createSet">
-        <div class="set">
-            <span class="set-title">+ Dodaj nowy zestaw</span>
-        </div>
-        </router-link>
+        
         <!-- v-for starts here -->
         <div class="set">
             <span class="set-title">Słówka - sport</span>
@@ -29,6 +25,10 @@
 <script>
 export default {
     name: 'Dashboard',
+    methods: {
+        getTiles(){
+        }
+    }
 }
 </script>
 

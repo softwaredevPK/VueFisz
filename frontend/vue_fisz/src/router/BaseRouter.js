@@ -7,7 +7,7 @@ import SignUp from '../views/SignUp.vue'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import ViewFlashCards from '../views/ViewFlashCards'
-import createSet from '../views/createSet'
+import CreateSet from '../views/createSet'
 import Sets from '../views/Sets'
 
 export default createRouter({
@@ -44,8 +44,8 @@ export default createRouter({
         },
         {
             path: '/createset',
-            name: 'createSet',
-            component: createSet
+            name: 'CreateSet',
+            component: CreateSet
         }
     ]
 })

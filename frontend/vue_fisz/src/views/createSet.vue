@@ -11,7 +11,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: "createSet",
+    name: "CreateSet",
     data(){
         return {
             name: '',
@@ -22,15 +22,13 @@ export default {
     },
     methods: {
         submitForm(e){
-            e.preventDefault();
 
             const formData = {
                 name: this.name
             }
 
             axios
-                .post('/api/v1/sets/'
-                , formData)
+                .post('/api/v1/sets/', formData)
                 .then(
                     res => {
                         this.$router.push('/dashboard');
