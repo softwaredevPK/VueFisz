@@ -1,33 +1,56 @@
 <template>
     <h2>Zestawy fiszek</h2>
     <div class="container sets">
-        
+        <router-link to="createSet">
+            <div class="set">
+                + Utwórz nowy zestaw
+            </div>
+        </router-link>
         <!-- v-for starts here -->
-        <div class="set">
-            <span class="set-title">Słówka - sport</span>
-        </div>
-        <div class="set">
-            <span class="set-title">Słówka - sport</span>
-        </div>
-        <div class="set">
-            <span class="set-title">Słówka - sport</span>
-        </div>
-        <div class="set">
-            <span class="set-title">Słówka - sport</span>
-        </div>
-        <div class="set">
-            <span class="set-title">Słówka - sport</span>
-        </div>
+        <template v-for="set in sets">
+            <router-link :to="{name: 'viewSet', params: {id: set.id}}">
+                <div class="set">
+                    <span class="set-title">{{set.title}}</span>
+                </div>
+            </router-link>
+        </template>
     </div>
 </template>
 
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'Dashboard',
+    data (){
+        return{
+            sets: []
+        }
+    },
     methods: {
         getTiles(){
+            const data = this.sets;
+
+            axios
+            .get('/api/v1/sets/')
+            .then(res => {
+                res.data.forEach(set => {
+                    data.push({
+                        id: set.id,
+                        title: set.name
+                    })
+                })
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
         }
+    },
+    beforeMount() {
+        this.getTiles();
     }
 }
 </script>
