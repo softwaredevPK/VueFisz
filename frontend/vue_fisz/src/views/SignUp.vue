@@ -2,6 +2,7 @@
     <div class="sign-up">
         <h2>Zarejestruj się</h2>
         <!-- ten prevent sprawia ze strona sie sama nie odswieza po submit-->
+        <p v-if="main_error" class="err-info" style="margin-bottom: 15px;">{{errors.non_field_errors[0]}}</p>
         <form @submit.prevent='submitForm'>
             <small v-if="email_error" class="err-info">{{errors.email[0]}}</small>
             <input type='email' name='email' placeholder="Podaj adres e-mail..." v-model='email' :class="{'is-invalid': email_error}">
@@ -25,6 +26,7 @@ export default {
             errors: [],
             password_error: false,
             email_error: false,
+            main_error: false,    
         }
     },
     methods: {
@@ -52,6 +54,12 @@ export default {
                     }
                     else {
                         this.email_error = false;
+                    }
+                     if ('non_field_errors' in this.errors){
+                        this.main_error = true;
+                    }
+                    else {
+                        this.main_error = false;
                     }
                     })
                  

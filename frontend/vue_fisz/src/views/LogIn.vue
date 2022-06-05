@@ -1,11 +1,7 @@
 <template>
     <div class="log-in">
         <h2>Zaloguj</h2>
-        <p v-if="errors.length">
-            <ul>
-                <li v-for="error in errors">{{ error }}</li>
-            </ul>
-        </p>
+        <p v-if="main_error" class="err-info" style="margin-bottom: 15px;">{{errors.non_field_errors[0]}}</p>
         <form @submit.prevent='submitForm'>
             <small v-if="email_error" class="err-info">{{errors.email[0]}}</small>
             <input type='email' name='email' placeholder="Podaj adres email..." v-model='email' :class="{'is-invalid': email_error}">
@@ -70,6 +66,7 @@ export default {
             errors: [],
             password_error: false,
             email_error: false,
+            main_error: false,     
         }
     },
     methods: {
@@ -83,7 +80,6 @@ export default {
                 .post('/api/v1/token/login', formData)
                 .then( response => {
                     const token = response.data.auth_token    
-                    console.log(token)
                     this.$store.commit('setToken', token)
                     axios.defaults.headers.common['Authorization'] = "Token " + token
                     localStorage.setItem('token', token)
@@ -102,6 +98,12 @@ export default {
                     }
                     else {
                         this.email_error = false;
+                    }
+                    if ('non_field_errors' in this.errors){
+                        this.main_error = true;
+                    }
+                    else {
+                        this.main_error = false;
                     }
                     })
         }       

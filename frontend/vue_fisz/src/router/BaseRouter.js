@@ -10,6 +10,7 @@ import ViewFlashCards from '../views/ViewFlashCards'
 import viewSet from '../views/viewSet'
 import CreateSet from '../views/createSet'
 import Sets from '../views/Sets'
+import Error from '../views/Error'
 
 export default createRouter({
     history: createWebHistory(),
@@ -52,6 +53,11 @@ export default createRouter({
             path: '/viewset/:id',
             name: 'viewSet',
             component: viewSet
+        },
+        {
+            path: '/error',
+            name: 'Error',
+            component: Error
         }
     ]
 })

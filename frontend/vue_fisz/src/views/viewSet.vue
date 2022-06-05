@@ -1,8 +1,8 @@
 <template>
     <div class="main">
         <h2>{{ this.name }}</h2>
-        <template v-for="fCard in this.flashcards">
-            <FlashCardListEl :frontText="fCard.front" :backText="fCard.back"></FlashCardListEl>
+        <template v-for="(fCard, index) in this.flashcards">
+            <FlashCardListEl :frontText="fCard.front" :backText="fCard.back" :id="fCard.id" @remove="removeFlashcard(index)"></FlashCardListEl>
         </template>
     </div>
 </template>
@@ -32,10 +32,12 @@ export default {
                     this.flashcards.push(el);
                 });
             })
-                .catch(err => {
-                console.log(err);
-            });
-        }
+        },
+
+        removeFlashcard(index) {
+            this.flashcards.splice(index,1)
+        },
+
     },
     created() {
         console.log(123);
