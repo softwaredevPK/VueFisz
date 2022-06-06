@@ -2,10 +2,8 @@
     <div v-if="!editMode" class="flashcard element">
         <strong class="flashcard name">{{frontText}} | {{backText}}</strong>
         <ul>
-            <li class="flashcard-modify">
                 <li class="edit" @click="editMode = !editMode"><img src="@/assets/edit.png" alt="edytuj"/></li>
                 <li class="edit" @click="deleteFlashcard(id)"><img src="@/assets/bin.png" alt="usuń"/></li>
-            </li>
         </ul>
     </div>
     <div v-else class="flashcard element">
