@@ -39,7 +39,7 @@
             }
         console.log(formData)
         axios
-            .put(`/api/v1/flashcards/${id}`, formData)
+            .put(`/api/v1/flashcards/${id}/`, formData)
             .then(response => {
                 editMode.value = false
             })
