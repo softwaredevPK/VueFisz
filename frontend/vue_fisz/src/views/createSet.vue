@@ -32,7 +32,7 @@ export default {
                 .post('/api/v1/sets/', formData)
                 .then(
                     res => {
-                        this.$router.push('/dashboard');
+                        this.$router.push('/sets');
                     }
                 )
                 .catch(err=>{

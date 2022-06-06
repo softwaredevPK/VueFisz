@@ -1,11 +1,13 @@
 <template>
     <div class="main">
         <h2>{{ this.name }}</h2>
-        <button v-if="!addFlashcard" @click="addFlashcard = !addFlashcard" class="button add-flashcard" type="button">+ Dodaj nową fiszkę</button>
+        <button v-if="!newFlashcard" @click="newFlashcard = !newFlashcard; back_error=false; front_error=false" class="button add-flashcard" type="button">+ Dodaj nową fiszkę</button>
         <div v-else class="flashcard element">
-            <form @submit.prevent='editFlashcard(id)'>
-                <input type='text' name='front' placeholder="Dodaj przód fiszki...">
-                <input type='text' name='back' placeholder="Dodaj tył fiszki...">
+            <form @submit.prevent='addFlashcard'>
+                <small v-if="front_error" class="err-info">{{front_error_msg}}</small>
+                <input type='text' name='newFrontText' v-model='newFrontText' placeholder="Dodaj przód fiszki..." :class="{'is-invalid': front_error }">
+                <small v-if="back_error" class="err-info">{{back_error_msg}}</small>
+                <input type='text' name='newBackText'  v-model='newBackText' placeholder="Dodaj tył fiszki..." :class="{'is-invalid': back_error }">
                 <button type='submit'>Zapisz zmianę</button>
             </form>
         </div>
@@ -23,6 +25,8 @@
 <script>
 import FlashCardListEl from '@/components/FlashCardListEl.vue';
 import axios from 'axios';
+import connection from "../connection";
+
 export default {
     name: "viewSet",
     data() {
@@ -31,11 +35,48 @@ export default {
             id: 0,
             passed: false,
             repeat: false,
+            back_error: false,
+            front_error: false,
+            front_error_msg: '',
+            back_error_msg: '',
             flashcards: [],
-            addFlashcard: false
+            newFlashcard: false,
+            newFrontText: '',
+            newBackText: '',
+            myAxios: connection.axios
         };
     },
     methods: {
+         addFlashcard() {
+            const setID = this.$route.params.id;
+            const formData = {
+                front: this.newFrontText,
+                back: this.newBackText,
+                set: setID,
+            }
+            this.myAxios
+                .post(`/api/v1/flashcards/`, formData)
+                .then(res => {
+                    this.getFlashCards()
+                    this.newFlashcard = false
+                })
+                .catch(error => {
+                    let data = error.response.data
+                    if ('front' in data) {
+                        this.front_error = true;
+                        this.front_error_msg = data.front[0]
+                    }
+                    else {
+                        this.front_error = false;
+                    }
+                    if ('back' in data) {
+                        this.back_error = true;
+                        this.back_error_msg = data.back[0]
+                    }
+                    else {
+                        this.back_error = false;
+                    }})
+        },
         getFlashCards() {
             const setID = this.$route.params.id;
             axios
@@ -50,7 +91,7 @@ export default {
                 });
             })
         },
-
+       
         removeFlashcard(index) {
             this.flashcards.splice(index,1)
         },

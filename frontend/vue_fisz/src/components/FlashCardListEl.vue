@@ -10,8 +10,10 @@
     </div>
     <div v-else class="flashcard element">
         <form @submit.prevent='editFlashcard(id)'>
-            <input type='text' name='front' v-model='frontText'>
-            <input type='text' name='back' v-model='backText'>
+            <small v-if="front_error" class="err-info">{{front_error_msg}}</small>
+            <input type='text' name='front' v-model='frontText' :class="{'is-invalid': front_error }">
+            <small v-if="back_error" class="err-info">{{back_error_msg}}</small>
+            <input type='text' name='back' v-model='backText' :class="{'is-invalid': back_error }">
             <button type='submit'>Zapisz zmianę</button>
         </form>
     </div>
@@ -19,10 +21,15 @@
 
 <script setup>
     import {ref} from 'vue'
-    import axios from 'axios'
+    import connection from "../connection";
     const props = defineProps(['frontText', 'backText', 'id', 'passed', 'repeat_needed']);
     const emit = defineEmits(['remove'])
     const editMode = ref(false)
+    const back_error = ref(false)
+    const front_error = ref(false)
+    const back_error_msg = ref('')
+    const front_error_msg = ref('')
+    const axios = connection.axios
    
     function deleteFlashcard(id) {
         axios
@@ -41,7 +48,27 @@
             .put(`/api/v1/flashcards/${id}/`, formData)
             .then(response => {
                 editMode.value = false
+                front_error.value = false;
+                back_error.value = false;
             })
+            .catch(error => {
+                    let data = error.response.data
+                    if ('front' in data) {
+                        front_error.value = true;
+                        front_error_msg.value = data.front[0]
+                    }
+                    else {
+                        front_error.value = false;
+                    }
+                    if ('back' in data) {
+                        back_error.value = true;
+                        back_error_msg.value = data.back[0]
+                    }
+                    else {
+                        back_error.value = false;
+                    }
+            }
+        )
     }
 </script>
     

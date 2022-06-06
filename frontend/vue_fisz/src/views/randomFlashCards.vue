@@ -13,7 +13,6 @@ let current = ref('')
 getRandom()
 
 function getRandom() {
-	console.log('working')
  	axios
 	   	.get("api/v1/flashcards/random/")
 		.then(response => {
