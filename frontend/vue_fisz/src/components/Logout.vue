@@ -10,9 +10,15 @@
 
 <script>
 import axios from 'axios'
+import connection from "../connection";
 
 export default {
     name: 'LogOut',
+    data (){
+        return {
+            axios: connection.axios
+            }
+    },
     methods: {
         submitForm(e) {
             axios
@@ -27,6 +33,7 @@ export default {
                     console.log(response)
                     this.$store.commit('removeToken')
                     delete axios.defaults.headers.common["Authorization"]
+                    delete this.axios.defaults.headers.common["Authorization"]
                     localStorage.removeItem('token')
                     this.$router.push('/log-in')
                 })
