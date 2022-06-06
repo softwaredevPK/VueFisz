@@ -2,6 +2,8 @@
     <div v-if="!editMode" class="flashcard element">
         <strong class="flashcard name">{{frontText}} | {{backText}}</strong>
         <ul>
+                <li v-if="repeat_needed"><img src="@/assets/repeat.png" alt="powtórz"/></li>
+                <li v-if="passed"><img src="@/assets/passed.png" alt="zaliczone"/></li>
                 <li class="edit" @click="editMode = !editMode"><img src="@/assets/edit.png" alt="edytuj"/></li>
                 <li class="edit" @click="deleteFlashcard(id)"><img src="@/assets/bin.png" alt="usuń"/></li>
         </ul>
@@ -18,7 +20,7 @@
 <script setup>
     import {ref} from 'vue'
     import axios from 'axios'
-    const props = defineProps(['frontText', 'backText', 'id']);
+    const props = defineProps(['frontText', 'backText', 'id', 'passed', 'repeat_needed']);
     const emit = defineEmits(['remove'])
     const editMode = ref(false)
    
@@ -53,6 +55,9 @@
     vertical-align: middle;
     justify-content: center;
     align-items: center;
+    max-width: 450px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .flashcard strong{
