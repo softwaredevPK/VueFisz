@@ -11,6 +11,7 @@ import viewSet from '../views/viewSet'
 import CreateSet from '../views/createSet'
 import Sets from '../views/Sets'
 import Error from '../views/Error'
+import randomFlashCards from '../views/randomFlashCards'
 
 export default createRouter({
     history: createWebHistory(),
@@ -58,6 +59,12 @@ export default createRouter({
             path: '/error',
             name: 'Error',
             component: Error
-        }
+        },
+        {
+            path: '/random',
+            name: 'randomFlashCards',
+            component: randomFlashCards
+        },
+
     ]
 })

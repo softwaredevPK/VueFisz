@@ -2,16 +2,13 @@
     <NavBar></NavBar>
     <div class="content">
         <router-view></router-view>
-    <router-link to='/viewflashcards/1'>Flashcard view - temporary</router-link>
     </div>
 </template>
 
 
 <script>
     import axios from 'axios'
-//import Logout from './components/Logout.vue'
-import NavBar from './components/NavBar.vue'
-// import Logout from './components/Logout.vue';
+    import NavBar from './components/NavBar.vue'
 
     export default {
     // name: 'app',

@@ -10,8 +10,8 @@
 			</div>
 		</div>
         <div class="btn-actions">
-            <button class="btn-learned" @click="emit('learned')">Nauczone</button>
-            <button class="btn-toRepeat" @click="emit('toBeRepeated')">Do powtórki</button>
+            <button class="btn-learned" v-if="showLearned" @click="learned(id)">Nauczone</button>
+            <button class="btn-toRepeat" v-if="showRepeat" @click="toBeRepeated(id)">Do powtórki</button>
             <button class="btn-next" @click="emit('next')">Next</button>
         </div>
 	</label>
@@ -19,8 +19,26 @@
 </template>
 		
 <script setup>
-    const props = defineProps(['frontText', 'backText'])
-    const emit = defineEmits(['next', "learned", "toBeRepeated"])  // states of flashcard
+    import axios from 'axios'
+
+    const props = defineProps(['frontText', 'backText', 'id', 'showLearned', 'showRepeat'])
+    const emit = defineEmits(['next', ])  // states of flashcard
+
+	function learned(id) {
+		axios
+            .patch(`/api/v1/flashcards/${id}/`, {passed: true,})
+            .then(response => {
+                this.emit('next')
+            })
+	}
+
+	function toBeRepeated(id) {
+			axios
+            .patch(`/api/v1/flashcards/${id}/`, {repeat_needed: true,})
+            .then(response => {
+                this.emit('next')
+            })
+	}
 </script>
 
 <style scoped>

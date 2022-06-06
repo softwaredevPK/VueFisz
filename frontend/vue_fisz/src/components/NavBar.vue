@@ -12,6 +12,9 @@
             <li class="nav-item" v-if="this.$store.state.isAuthenticated">
             <router-link to='/sets' ><img src="@/assets/brain.png"/><span>Zestawy fiszek</span></router-link> 
             </li>
+            <li class="nav-item" v-if="this.$store.state.isAuthenticated">
+            <router-link to='/random' ><img src="@/assets/brain.png"/><span>Losowa fiszka</span></router-link> 
+            </li>
             <li class="nav-item" v-if="!this.$store.state.isAuthenticated">
                 <router-link to='/sign-up'><img src="@/assets/login.png"/><span>Zarejestruj się</span></router-link> 
             </li>

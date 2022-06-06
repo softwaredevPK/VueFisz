@@ -47,7 +47,7 @@ class FlashCardDetailedSerializer(ModelSerializer):
 class FlashCardUpdateSerializer(ModelSerializer):
     class Meta:
         model = Flashcard
-        fields = ['front', 'back', 'id']
+        fields = ['front', 'back', 'id', "repeat_needed", "passed"]
         read_only_fields = ['id']
 
 
@@ -65,7 +65,7 @@ class SetDetailedSerializer(ModelSerializer):
 
     class Meta:
         model = Set
-        fields = ['name', 'id', 'flashcards', ]
+        fields = ['name', 'id', 'flashcards']
         read_only_fields = ["id", "flashcards", "owner"]
 
     def create(self, validated_data):
