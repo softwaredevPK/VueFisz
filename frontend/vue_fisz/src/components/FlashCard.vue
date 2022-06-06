@@ -1,4 +1,9 @@
 <template>
+	<form class="flashcard-states">
+		<div><input type="radio" id="radio-1" name="radio" checked><label for="radio-1">Wszystkie</label></div>
+		<div><input type="radio" id="radio-2" name="radio"><label for="radio-2">Do powtórzenia</label></div>
+		<div><input type="radio" id="radio-3" name="radio"><label for="radio-3">Nauczone</label></div>
+	</form>
 	<label>
 	<input type="checkbox" />
 		<div class="flip-card">
@@ -134,6 +139,40 @@ hr {
 	background: #000;
 	color: #FFF;
 	cursor: pointer;
+}
+
+form.flashcard-states{
+	display: grid;
+	max-width: 450px;
+	grid-template-columns: repeat(3,1fr);
+	margin-bottom: 40px;
+	border: 1px solid #c1c1c1;
+	border-radius: 15px;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.flashcard-states input:checked ~ label{
+	background-color: #000;
+	color: #FFF;
+	transition: .2s;
+}
+
+.flashcard-states label{
+	width: unset;
+	height: unset;
+	padding: 5px;
+}
+
+.flashcard-states div:first-of-type label{
+	border-radius: 15px 0 0 15px;
+}
+
+.flashcard-states div:last-of-type label{
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
 }
 
 </style>
