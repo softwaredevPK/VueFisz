@@ -86,9 +86,7 @@ export default {
                 this.id = res.data.id;
                 this.passed = res.data.passed;
                 this.repeat = res.data.repeat_needed;
-                res.data.flashcards.forEach(el => {
-                    this.flashcards.push(el);
-                });
+                this.flashcards = res.data.flashcards
             })
         },
        
