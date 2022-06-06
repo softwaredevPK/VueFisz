@@ -20,7 +20,6 @@
 <script setup>
     import {ref} from 'vue'
     import axios from 'axios'
-    import router from '../router/BaseRouter'
     const props = defineProps(['frontText', 'backText', 'id']);
     const emit = defineEmits(['remove'])
     const editMode = ref(false)

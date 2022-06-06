@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import connection from "../connection";
 export default {
     name: "CreateSet",
     data(){
@@ -17,7 +17,8 @@ export default {
             name: '',
             error: '',
             setname_error_msg: '',
-            setname_error: false
+            setname_error: false,
+            axios: connection.axios
         }
     },
     methods: {
@@ -27,7 +28,7 @@ export default {
                 name: this.name
             }
 
-            axios
+            this.axios
                 .post('/api/v1/sets/', formData)
                 .then(
                     res => {

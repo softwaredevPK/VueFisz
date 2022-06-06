@@ -22,7 +22,6 @@ export default {
                 .then( response => {
                     sets = response.data
                 })
-                .catch(error => {console.log(error)})
         }       
 
     }

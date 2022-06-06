@@ -30,8 +30,6 @@ export default {
                     localStorage.removeItem('token')
                     this.$router.push('/log-in')
                 })
-                .catch(error => {
-                    console.log(error)})
         }       
 
     }
