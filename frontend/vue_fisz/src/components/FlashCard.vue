@@ -1,8 +1,8 @@
 <template>
 	<form class="flashcard-states">
-		<div><input type="radio" id="radio-1" name="radio" checked><label for="radio-1">Wszystkie</label></div>
-		<div><input type="radio" id="radio-2" name="radio"><label for="radio-2">Do powtórzenia</label></div>
-		<div><input type="radio" id="radio-3" name="radio"><label for="radio-3">Nauczone</label></div>
+		<div><input type="radio" id="radio-1" name="radio" @change="emit('all')" checked><label for="radio-1">Wszystkie</label></div>
+		<div><input type="radio" id="radio-2" name="radio" @change="emit('learnedOnly')"><label for="radio-2">Do powtórzenia</label></div>
+		<div><input type="radio" id="radio-3" name="radio" @change="emit('toBeRepeatedOnly')"><label for="radio-3">Nauczone</label></div>
 	</form>
 	<label>
 	<input type="checkbox" />
@@ -27,7 +27,7 @@
     import axios from 'axios'
 
     const props = defineProps(['frontText', 'backText', 'id', 'showLearned', 'showRepeat'])
-    const emit = defineEmits(['next', ])  // states of flashcard
+    const emit = defineEmits(['next', 'all', 'learnedOnly', 'toBeRepeatedOnly'])  // states of flashcard
 
 	function learned(id) {
 		axios

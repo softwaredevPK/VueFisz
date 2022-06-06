@@ -12,11 +12,13 @@ class FilteredListSerializer(ListSerializer):
 
     def to_representation(self, data):
         request = self.context['request']
-        passed = bool(request.query_params.get('passed', False))
-        repeat_needed = bool(request.query_params.get('repeat_needed', False))
+        passed = request.query_params.get('passed', False)
         if passed:
+            passed = True if passed == 'true' else False
             data = data.filter(passed=passed)
+        repeat_needed = request.query_params.get('repeat_needed', False)
         if repeat_needed:
+            repeat_needed = True if repeat_needed == 'true' else False
             data = data.filter(repeat_needed=repeat_needed)
         return super(FilteredListSerializer, self).to_representation(data)
 

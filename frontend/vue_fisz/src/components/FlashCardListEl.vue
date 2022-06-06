@@ -21,6 +21,7 @@
 
 <script setup>
     import {ref} from 'vue'
+    import axios from 'axios';
     import connection from "../connection";
     const props = defineProps(['frontText', 'backText', 'id', 'passed', 'repeat_needed']);
     const emit = defineEmits(['remove'])
@@ -29,7 +30,7 @@
     const front_error = ref(false)
     const back_error_msg = ref('')
     const front_error_msg = ref('')
-    const axios = connection.axios
+    const myAxios = connection.axios
    
     function deleteFlashcard(id) {
         axios
@@ -44,7 +45,7 @@
                 front: this.props.frontText,
                 back: this.props.backText,
             }
-        axios
+        myAxios
             .put(`/api/v1/flashcards/${id}/`, formData)
             .then(response => {
                 editMode.value = false
