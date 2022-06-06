@@ -15,7 +15,7 @@
 
 
 <script>
-import axios from 'axios'
+import connection from "../connection";
 
 export default {
     name: 'SignUp',
@@ -27,6 +27,7 @@ export default {
             password_error: false,
             email_error: false,
             main_error: false,    
+            axios: connection.axios
         }
     },
     methods: {
@@ -36,7 +37,7 @@ export default {
                 password: this.password,
             }
 
-            axios
+            this.axios
                 .post('/api/v1/users/', formData)
                 .then( response => {
                     this.$router.push('/log-in')

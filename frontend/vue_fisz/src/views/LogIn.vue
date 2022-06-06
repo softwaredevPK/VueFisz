@@ -55,7 +55,7 @@ form button:focus{
 </style>
 <script>
 import axios from 'axios'
-
+import connection from "../connection";
 
 export default {
     name: 'LogIn',
@@ -67,6 +67,7 @@ export default {
             password_error: false,
             email_error: false,
             main_error: false,     
+            axios: connection.axios
         }
     },
     methods: {
@@ -76,12 +77,13 @@ export default {
                 password: this.password,
             }
 
-            axios
+            this.axios
                 .post('/api/v1/token/login', formData)
                 .then( response => {
                     const token = response.data.auth_token    
                     this.$store.commit('setToken', token)
                     axios.defaults.headers.common['Authorization'] = "Token " + token
+                    this.axios.defaults.headers.common['Authorization'] = "Token " + token
                     localStorage.setItem('token', token)
                     this.$router.push('/dashboard')
                 })
