@@ -37,7 +37,6 @@
                 front: this.props.frontText,
                 back: this.props.backText,
             }
-        console.log(formData)
         axios
             .put(`/api/v1/flashcards/${id}/`, formData)
             .then(response => {

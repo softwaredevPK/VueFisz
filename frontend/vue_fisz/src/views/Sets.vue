@@ -16,7 +16,6 @@ export default {
     name: 'Sets',
     beforeCreate() {
         let sets = [];
-            console.log(axios.defaults.headers.common);
             axios
                 .get('/api/v1/sets/', )
                 .then( response => {

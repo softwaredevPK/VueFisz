@@ -23,14 +23,8 @@ export default {
         submitForm(e) {
             axios
                 .post('/api/v1/token/logout')
-                .then(
-                    res =>{
-                        console.log(123)
-                        console.log(res)
-                    } 
-                )
                 .then( response => {
-                    console.log(response)
+
                     this.$store.commit('removeToken')
                     delete axios.defaults.headers.common["Authorization"]
                     delete this.axios.defaults.headers.common["Authorization"]
