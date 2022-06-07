@@ -1,6 +1,6 @@
 <template>
 	<h2>Losowa fiszka</h2>
-	<FlashCard :frontText="current.front" :backText="current.back" :id="current.id" 
+	<FlashCard :frontText="current.front" :backText="current.back" :id="current.id" :showLearned="!toBeRepeatedOnly" :showRepeat="!learnedOnly"
 	@next="getRandom" @learnedOnly="learnChanged" @toBeRepeatedOnly="repeatedChanged" @all="allChanged"></FlashCard>
 	
 </template>
@@ -23,7 +23,6 @@ function getRandom() {
 	else if (toBeRepeatedOnly.value) {
 		extra_url += '?repeat_needed=true'
 	}
-	console.log(extra_url)
  	axios
 	   	.get("api/v1/flashcards/random/" + extra_url)
 		.then(response => {

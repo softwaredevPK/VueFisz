@@ -7,14 +7,20 @@
             </div>
         </router-link>
         <!-- v-for starts here -->
-        <template v-for="set in sets">
+        <template v-for="(set, index) in sets">
             <router-link :to="{name: 'viewSet', params: {id: set.id}}" class="set-link">
                 <div class="set">
                     <div class="actions">
                         <ul class="action-list">
-                            <li><img src="@/assets/edit.png" alt=""></li> <!--edytowanie zestawu - można użyc widoku tworzenia-->
-                            <li><img src="@/assets/brain.png" alt=""></li><!-- flashcard view do wykorzystania -->
-                            <li><img src="@/assets/bin.png" alt=""></li><!-- usuwanie - na tej samej zasadzie co konkretne fraszki-->
+                            <router-link :to="{name: 'editSet', params: {id: set.id}}" class="set-link">
+                                <li><img src="@/assets/edit.png" alt=""></li>
+                            </router-link>
+                            <router-link :to="{name: 'seeFlashCard', params: {id: set.id}}" class="set-link">
+                                <li><img src="@/assets/brain.png" alt=""></li>
+                            </router-link>
+                            <router-link :to="{name: 'Sets'}" class="set-link">
+                                <li @click="deleteSet(set.id, index)"><img src="@/assets/bin.png" alt=""></li><!-- usuwanie - na tej samej zasadzie co konkretne fraszki-->
+                            </router-link>
                         </ul>
                     </div>
                     <span class="set-title">{{set.title}}</span>
@@ -49,6 +55,13 @@ export default {
                     })
                 })
             })
+        },
+        deleteSet(id, index) {
+            axios
+                .delete(`/api/v1/sets/${id}/`)
+                .then(response => {
+                    this.sets.splice(index, 1)
+                })
         }
     },
     beforeMount() {
