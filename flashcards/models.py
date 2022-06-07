@@ -26,9 +26,10 @@ class Flashcard(TimeStamp):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        original = Flashcard.objects.get(id=self.id)
-        if self.passed and not original.passed:  # now passed, but wasn't
-            self.repeat_needed = False
-        if self.repeat_needed and not original.repeat_needed:  # now repeat_needed, but wasn't
-            self.passed = False
+        if self.id:
+            original = Flashcard.objects.get(id=self.id)
+            if self.passed and not original.passed:  # now passed, but wasn't
+                self.repeat_needed = False
+            if self.repeat_needed and not original.repeat_needed:  # now repeat_needed, but wasn't
+                self.passed = False
         super().save(force_insert=False, force_update=False, using=None, update_fields=None)
