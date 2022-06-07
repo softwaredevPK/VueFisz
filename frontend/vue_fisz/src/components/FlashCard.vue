@@ -1,11 +1,11 @@
 <template>
 	<form class="flashcard-states">
-		<div><input type="radio" id="radio-1" name="radio" @change="emit('all')" checked><label for="radio-1">Wszystkie</label></div>
-		<div><input type="radio" id="radio-2" name="radio" @change="emit('learnedOnly')"><label for="radio-2">Do powtórzenia</label></div>
-		<div><input type="radio" id="radio-3" name="radio" @change="emit('toBeRepeatedOnly')"><label for="radio-3">Nauczone</label></div>
+		<div><input type="radio" id="radio-1" name="radio" checked><label for="radio-1">Wszystkie</label></div>
+		<div><input type="radio" id="radio-2" name="radio"><label for="radio-2">Do powtórzenia</label></div>
+		<div><input type="radio" id="radio-3" name="radio"><label for="radio-3">Nauczone</label></div>
 	</form>
 	<label>
-	<input type="checkbox" />
+	<input type="checkbox" @change="isReversed = !isReversed" :checked="isReversed"/>
 		<div class="flip-card">
 			<div class="front">
 				<p>{{frontText}}</p>
@@ -14,20 +14,28 @@
                 <p>{{backText}}</p>
 			</div>
 		</div>
+		<template>
+		</template>
         <div class="btn-actions">
-            <button class="btn-learned" v-if="showLearned" @click="learned(id)">Nauczone</button>
-            <button class="btn-toRepeat" v-if="showRepeat" @click="toBeRepeated(id)">Do powtórki</button>
-            <button class="btn-next" @click="emit('next')">Next</button>
+            <button class="btn-learned" v-if="showLearned" @click="checkIfReversed(); learned(id)">Nauczone</button>
+            <button class="btn-toRepeat" v-if="showRepeat" @click="checkIfReversed(); toBeRepeated(id)">Do powtórki</button>
+            <button class="btn-next" @click="checkIfReversed(); emit('next');">Kolejny</button>
         </div>
 	</label>
     
 </template>
 		
 <script setup>
+	import { ref} from '@vue/reactivity';
     import axios from 'axios'
 
+	const isReversed = ref(false);
     const props = defineProps(['frontText', 'backText', 'id', 'showLearned', 'showRepeat'])
-    const emit = defineEmits(['next', 'all', 'learnedOnly', 'toBeRepeatedOnly'])  // states of flashcard
+    const emit = defineEmits(['next', ])  // states of flashcard
+
+	function checkIfReversed(){
+		isReversed.value ? isReversed.value = !isReversed.value :"";
+	}
 
 	function learned(id) {
 		axios
@@ -91,7 +99,7 @@ label {
 
 .flip-card .back {
 	transform: rotateY(180deg);
-	color: #FFF;
+	color: #000;
 	background-color: #000;
 	/* background: #fff; */
 }
@@ -110,6 +118,10 @@ input {
 label:hover :checked + .flip-card {
 	transform: rotateY(175deg);
 	box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
+}
+
+:checked ~ .flip-card .back{
+	color: #FFF;
 }
 
 hr {

@@ -59,6 +59,8 @@ export default {
                 .then(res => {
                     this.getFlashCards()
                     this.newFlashcard = false
+                    this.newFrontText = "";
+                    this.newBackText = "";
                 })
                 .catch(error => {
                     let data = error.response.data
@@ -107,7 +109,7 @@ export default {
 button.add-flashcard{
     border: 1px solid #c1c1c1;
     margin-bottom: 20px;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 15px 15px 15px 30px;
     display: flex;
     vertical-align: middle;
@@ -119,7 +121,13 @@ button.add-flashcard{
     font-size: 16px;
 }
 
-button.add-flashcard, hr, .flashcard.element, small{
+
+button.add-flashcard:hover{
+    cursor: pointer;
+    background-color: #e1e1e1;
+}
+
+button.add-flashcard, hr, .flashcard.element, small:not(.err-info){
     max-width: 450px;
     width: 100%;
     margin-left: 0;
@@ -131,7 +139,7 @@ button.add-flashcard, hr, .flashcard.element, small{
     margin-bottom: 15px;
 }
 
-small{
+small:not(.err-info){
     padding-bottom: 15px;
     display: block;
     width: 100%;

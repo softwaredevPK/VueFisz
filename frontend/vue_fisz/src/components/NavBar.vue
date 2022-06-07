@@ -6,8 +6,8 @@
             <li class="nav-item">
                 <router-link to="/" v-if="!this.$store.state.isAuthenticated"><img src="@/assets/home.png"/><span>Strona główna</span></router-link>
             </li>
-            <li class="nav-item">
-                <router-link to="/dashboard" v-if="this.$store.state.isAuthenticated"><img src="@/assets/home.png"/><span>Strona główna</span></router-link>
+            <li class="nav-item" v-if="this.$store.state.isAuthenticated">
+                <router-link to="/dashboard" ><img src="@/assets/home.png"/><span>Strona główna</span></router-link>
             </li>
             <li class="nav-item" v-if="this.$store.state.isAuthenticated">
             <router-link to='/sets' ><img src="@/assets/brain.png"/><span>Zestawy fiszek</span></router-link> 

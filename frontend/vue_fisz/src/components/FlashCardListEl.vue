@@ -5,7 +5,7 @@
                 <li v-if="repeat_needed"><img src="@/assets/repeat.png" alt="powtórz"/></li>
                 <li v-if="passed"><img src="@/assets/passed.png" alt="zaliczone"/></li>
                 <li class="edit" @click="editMode = !editMode"><img src="@/assets/edit.png" alt="edytuj"/></li>
-                <li class="edit" @click="deleteFlashcard(id)"><img src="@/assets/bin.png" alt="usuń"/></li>
+                <li class="remove" @click="deleteFlashcard(id)"><img src="@/assets/bin.png" alt="usuń"/></li>
         </ul>
     </div>
     <div v-else class="flashcard element">
@@ -101,5 +101,9 @@
 
 ul img{
     max-width: 25px;
+}
+
+.remove:hover, .edit:hover{
+    cursor: pointer;
 }
 </style>

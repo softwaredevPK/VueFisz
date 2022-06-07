@@ -67,5 +67,59 @@ body {
     font-size: 14px;
 }
 
+@media(max-width: 768px){
+    #app{
+        display: block;
+        padding: 0;
+    }
 
+    .app-nav img{
+        max-width: 200px;
+    }
+
+    .app-nav{
+        border: none;
+    }
+
+    .app-nav ul{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .app-nav ul a,
+    .app-nav ul button{
+        padding: 10px 10px;
+    }
+
+    .app-nav h1{
+        text-align: center;
+    }
+
+
+    .content{
+        text-align: center;
+    }
+
+    .content{
+        padding: 0 30px;
+    }
+
+    .content h2{
+        margin-top: 10px;
+        margin-bottom: 25px;
+        font-size: 2em;
+    }
+
+    .content .sets{
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .content label{
+        margin: 0 auto;
+    }
+
+    .content form{
+        margin: 0 auto;
+    }
+}
 </style>

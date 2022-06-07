@@ -1,7 +1,7 @@
 <template>
     <div class="logout">
         <button class="btn btn-danger btn-block" v-if="this.$store.state.isAuthenticated" @click.prevent="submitForm">
-            <img src="@/assets/logout.png"/><span>Log Out</span>
+            <img src="@/assets/logout.png"/><span>Wyloguj</span>
         </button>
 
     </div>
