@@ -44,7 +44,6 @@ export default {
         },
         getName() {
             const setID = this.$route.params.id;
-            console.log(setID)
             axios
                 .get(`/api/v1/sets/${setID}/`, {name: this.name})
                 .then(response => {
