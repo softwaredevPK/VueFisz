@@ -24,7 +24,17 @@ getFlashCards()
 
 function nextFlashcard() {
 	current_id.value += 1
-	current.value = flashcards.value[current_id.value]
+	let next = flashcards.value[current_id.value]
+	if (next == undefined) {
+		current.value = {
+					"id": null,
+					"front": "",
+					"back": ""
+					}
+	}
+	else {
+		current.value = next
+	}
 }
 
 function getFlashCards() {
@@ -46,9 +56,12 @@ function getFlashCards() {
 				current.value = flashcards.value[0]
 			}
 			else {
-				current.value = {}
+				current.value = {
+					"id": null,
+					"front": "",
+					"back": ""
+					}
 			}
-			
         	}
 		)	
 }

@@ -17,9 +17,9 @@
 		<template>
 		</template>
         <div class="btn-actions">
-            <button class="btn-learned" v-if="showRepeat" @click="checkIfReversed(); learned(id)">Nauczone</button>
-            <button class="btn-toRepeat" v-if="showLearned"  @click="checkIfReversed(); toBeRepeated(id)">Do powtórki</button>
-            <button class="btn-next" @click="checkIfReversed(); emit('next');">Kolejny</button>
+            <button class="btn-learned" v-if="showRepeat" @click="checkIfReversed(); learned(id)"  :disabled="id == null">Nauczone</button>
+            <button class="btn-toRepeat" v-if="showLearned"  @click="checkIfReversed(); toBeRepeated(id)" :disabled="id == null">Do powtórki</button>
+            <button class="btn-next" @click="checkIfReversed(); emit('next');"  :disabled="id == null">Kolejny</button>
         </div>
 	</label>
     

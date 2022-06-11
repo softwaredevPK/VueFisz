@@ -8,8 +8,13 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 
 axios.interceptors.response.use(null, error => {
-        console.log(error)
-        router.push('/error');
+        if (error.response.status === 403) {
+                router.push('/log-in');
+        }
+        else {
+                router.push('/error');
+        }
+        
         return Promise.reject(error)
 })
 

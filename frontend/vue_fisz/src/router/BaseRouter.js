@@ -13,6 +13,18 @@ import Error from '../views/Error'
 import randomFlashCards from '../views/randomFlashCards'
 import seeFlashCard from '../views/seeFlashCard'
 import editSet from '../views/editSet'
+import store from '../store'
+
+function guardMyroute(to, from, next)
+{
+ var isAuthenticated =  store.state.isAuthenticated
+
+if(isAuthenticated) {
+  next(); // allow to enter route
+ } else{
+  next('/log-in'); // go to '/login';
+ }
+}
 
 export default createRouter({
     history: createWebHistory(),
@@ -34,21 +46,25 @@ export default createRouter({
         {
             path: '/dashboard',
             name: 'dashboard',
+            beforeEnter : guardMyroute,
             component: Dashboard
         },
         {
             path: '/sets',
             name: 'Sets',
+            beforeEnter : guardMyroute,
             component: Sets
         },
         {
             path: '/createset',
             name: 'CreateSet',
+            beforeEnter : guardMyroute,
             component: CreateSet
         },
         {
             path: '/viewset/:id',
             name: 'viewSet',
+            beforeEnter : guardMyroute,
             component: viewSet
         },
         {
@@ -59,16 +75,19 @@ export default createRouter({
         {
             path: '/random',
             name: 'randomFlashCards',
+            beforeEnter : guardMyroute,
             component: randomFlashCards
         },
         {
             path: '/sets/learn/:id',
             name: 'seeFlashCard',
+            beforeEnter : guardMyroute,
             component: seeFlashCard
         },
         {
             path: '/editset/:id',
             name: 'editSet',
+            beforeEnter : guardMyroute,
             component: editSet
         },
 
